@@ -1,0 +1,94 @@
+{
+        "air_force_blue_raf": {
+                "name": "One",
+                "hex": "#5d8aa8",
+                "rgb": [93, 138, 168]
+        },
+        "amber": {
+                "name": "Two",
+                "hex": "#ffbf00",
+                "rgb": [255, 191, 0]
+        },
+
+        "arsenic": {
+                "name": "Three",
+                "hex": "#3b444b",
+                "rgb": [59, 68, 75]
+        },
+        "arylide_yellow": {
+                "name": "Four",
+                "hex": "#e9d66b",
+                "rgb": [233, 214, 107]
+        },
+
+        "cool_grey": {
+                "name": "Five",
+                "hex": "#8c92ac",
+                "rgb": [140, 146, 172]
+        },
+        "copper": {
+                "name": "Six",
+                "hex": "#b87333",
+                "rgb": [184, 115, 51]
+        },
+        "copper_crayola": {
+                "name": "SEVEN",
+                "hex": "#da8a67",
+                "rgb": [218, 138, 103]
+        },
+        "copper_penny": {
+                "name": "Eight",
+                "hex": "#ad6f69",
+                "rgb": [173, 111, 105]
+        },
+        "copper_red": {
+                "name": "Nine",
+                "hex": "#cb6d51",
+                "rgb": [203, 109, 81]
+        },
+        "copper_rose": {
+                "name": "Ten",
+                "hex": "#966",
+                "rgb": [153, 102, 102]
+        },
+        "coquelicot": {
+                "name": "Coquelicot",
+                "hex": "#ff3800",
+                "rgb": [255, 56, 0]
+        },
+
+        "cotton_candy": {
+                "name": "Cotton Candy",
+                "hex": "#ffbcd9",
+                "rgb": [255, 188, 217]
+        },
+
+        "dark_chestnut": {
+                "name": "Dark Chestnut",
+                "hex": "#986960",
+                "rgb": [152, 105, 96]
+        },
+
+        "dark_khaki": {
+                "name": "Dark Khaki",
+                "hex": "#bdb76b",
+                "rgb": [189, 183, 107]
+        },
+        "dark_lava": {
+                "name": "Dark Lava",
+                "hex": "#483c32",
+                "rgb": [72, 60, 50]
+        },
+
+
+        "zaffre": {
+                "name": "Zaffre",
+                "hex": "#0014a8",
+                "rgb": [0, 20, 168]
+        },
+        "zinnwaldite_brown": {
+                "name": "Zinnwaldite Brown",
+                "hex": "#2c1608",
+                "rgb": [44, 22, 8]
+        }
+}

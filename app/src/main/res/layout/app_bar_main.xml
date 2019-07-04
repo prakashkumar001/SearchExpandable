@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical">
+
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:visibility="gone"
+            android:background="?attr/colorPrimary"
+           />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="bottom|end"
+
+        android:src="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+    android:orientation="horizontal"
+android:background="#000"
+    android:padding="5dp"
+    android:weightSum="3"
+android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight=".5"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_cap"/>
+        <TextView
+            android:id="@+id/txt_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+           android:layout_marginTop="2dp"
+            android:layout_marginLeft="3dp"
+            android:textColor="#fff"
+            android:gravity="center"
+
+            android:fontFamily="@font/a_love_of_thunder"
+            android:layout_gravity="center"
+            android:text="0"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+      android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content">
+
+    <Button
+
+        android:id="@+id/btn_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginRight="39dp"
+    android:layout_gravity="center"
+        android:gravity="center"
+
+        android:text=" CART "
+        android:textColor="#fff"
+
+
+
+
+        android:background="@drawable/rounded_border_btn"
+        android:tint="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_weight=".5"
+        android:layout_gravity="center"
+        android:gravity="end"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txt_carttotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+
+
+        android:text="AED 0.0"/>
+    </LinearLayout>
+</LinearLayout>
+
+</RelativeLayout>

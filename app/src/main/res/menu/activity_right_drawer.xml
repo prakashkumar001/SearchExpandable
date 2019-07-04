@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:title="Account">
+            <menu>
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="Settings" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="Logout" />
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Help" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/ic_launcher"
+            android:title="About" />
+    </group>
+
+</menu>
