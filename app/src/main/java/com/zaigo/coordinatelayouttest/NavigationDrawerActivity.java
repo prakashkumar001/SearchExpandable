@@ -93,7 +93,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     DrawerLayout drawer;
     private MovieCategoryAdapter mAdapter;
-    private RecyclerView recyclerView;
+    public static RecyclerView recyclerView;
 
     List<MovieCategory> movieCategories = new ArrayList<>();
     List<Product> storeCategoryList;
@@ -245,7 +245,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() != 0 && s.length() >= 3) {
 
                     timer = new Timer();
                     timer.schedule(new TimerTask() {
@@ -272,7 +271,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
                     }, 500);
                 }
 
-            }
+
         });
 
 

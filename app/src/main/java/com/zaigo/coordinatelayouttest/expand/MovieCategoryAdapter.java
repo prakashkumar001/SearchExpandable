@@ -27,6 +27,8 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.zaigo.coordinatelayouttest.NavigationDrawerActivity.recyclerView;
+
 public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategoryViewHolder, MoviesViewHolder> implements Filterable {
     List<Product> categoryListdb;
     List<MovieCategory> categorys;
@@ -38,11 +40,12 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
     Product productDbModel;
 public int count=-1;
     private AdapterCallback adapterCallback;
-
+  Activity context;
     public MovieCategoryAdapter(Activity context, List<MovieCategory> movieCategories) {
+
         super(movieCategories);
         mInflator = LayoutInflater.from(context);
-
+this.context=context;
         daoSession = ((App) context.getApplication()).getDaoSession();
         productDao = daoSession.getProductDao();
         categoryListdb =productDao.loadAll();
@@ -550,9 +553,16 @@ public int count=-1;
                 filtercategoryListdb = (ArrayList<MovieCategory>) filterResults.values;
 
                 collapseAllParents();
-                count=-1;
+                //count=-1;
                 // refresh the list with filtered data
-                notifyDataSetChanged();
+                MovieCategoryAdapter   mAdapter = new MovieCategoryAdapter(context, filtercategoryListdb);
+
+                recyclerView.setAdapter(mAdapter);
+
+                mAdapter.collapseAllParents();
+
+                mAdapter.expandParent(0);
+
             }
         };
     }
