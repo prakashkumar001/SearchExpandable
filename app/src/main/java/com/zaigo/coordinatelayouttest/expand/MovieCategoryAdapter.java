@@ -79,6 +79,24 @@ this.context=context;
         categoryListdb=productDao.loadAll();
 
 
+        movieCategoryViewHolder.mMovieTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(movieCategoryViewHolder.isExpanded())
+                {
+                    collapseAllParents();
+
+                }else
+                {
+                    expandParent(position);
+
+                }
+
+            }
+        });
+
+
 
     }
 

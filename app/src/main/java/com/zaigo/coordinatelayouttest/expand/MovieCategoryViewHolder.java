@@ -13,8 +13,8 @@ public class MovieCategoryViewHolder extends ParentViewHolder {
     private static final float INITIAL_POSITION = 0.0f;
     private static final float ROTATED_POSITION = 180f;
 
-    private final ImageView mArrowExpandImageView;
-    private TextView mMovieTextView;
+    public final ImageView mArrowExpandImageView;
+    public TextView mMovieTextView;
 
     public MovieCategoryViewHolder(View itemView) {
         super(itemView);
@@ -34,6 +34,7 @@ public class MovieCategoryViewHolder extends ParentViewHolder {
         if (expanded) {
             mArrowExpandImageView.setRotation(ROTATED_POSITION);
         } else {
+
             mArrowExpandImageView.setRotation(INITIAL_POSITION);
         }
 
