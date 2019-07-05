@@ -567,17 +567,22 @@ public class NavigationDrawerActivity extends AppCompatActivity
                     public void onClick(View v) {
                         // viewPager.setCurrentItem(index);
 
-                        mAdapter.collapseAllParents();
+                        if(mAdapter!=null)
+                        {
+                            mAdapter.collapseAllParents();
 
-                        mFramentContainerHelper.handlePageSelected(index);
+                            mFramentContainerHelper.handlePageSelected(index);
 
-                        mAdapter.expandParent(index);
+                            mAdapter.expandParent(index);
 
 
 
-                       // childListDeatilsApiCalling(index,storeCategoryparentList.get(index).getMainId());
-                        System.out.println("RRRRRRRRRRRRRRR"+index);
-                    }
+                            // childListDeatilsApiCalling(index,storeCategoryparentList.get(index).getMainId());
+                            System.out.println("RRRRRRRRRRRRRRR"+index);
+
+                        }
+
+                             }
                 });
                 return simplePagerTitleView;
             }
@@ -663,7 +668,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
                     }
 
                     childListDeatilsApiCalling(0);
-                    initMagicIndicator8(mAdapter);
                 }
 
 
@@ -733,6 +737,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
                         mAdapter = new MovieCategoryAdapter(NavigationDrawerActivity.this, movieCategories);
 
                         recyclerView.setAdapter(mAdapter);
+
+                        initMagicIndicator8(mAdapter);
+
 
                         mAdapter.collapseAllParents();
 
