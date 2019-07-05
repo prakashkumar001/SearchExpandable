@@ -568,16 +568,16 @@ this.context=context;
                 collapseAllParents();
                 //count=-1;
                 // refresh the list with filtered data
-                MovieCategoryAdapter   mAdapter = new MovieCategoryAdapter(context, filtercategoryListdb);
+                 NavigationDrawerActivity.mAdapter = new MovieCategoryAdapter(context, filtercategoryListdb);
 
-                recyclerView.setAdapter(mAdapter);
+                recyclerView.setAdapter(NavigationDrawerActivity.mAdapter);
 
 
                 NavigationDrawerActivity.initMagicIndicator8();
 
-                mAdapter.collapseAllParents();
+                NavigationDrawerActivity.mAdapter.collapseAllParents();
 
-                mAdapter.expandParent(0);
+                NavigationDrawerActivity.mAdapter.expandParent(0);
 
             }
         };
