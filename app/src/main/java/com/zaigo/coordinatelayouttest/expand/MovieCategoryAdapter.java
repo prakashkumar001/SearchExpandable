@@ -47,9 +47,7 @@ public int count=-1;
         mInflator = LayoutInflater.from(context);
 this.context=context;
         daoSession = ((App) context.getApplication()).getDaoSession();
-        productDao = daoSession.getProductDao();
         categorys=movieCategories;
-        categoryListdb =productDao.loadAll();
         filtercategoryListdb =movieCategories;
         try {
             adapterCallback = ((AdapterCallback) context);
@@ -77,6 +75,8 @@ this.context=context;
         MovieCategory movieCategory = (MovieCategory) parentListItem;
 
             movieCategoryViewHolder.bind(movieCategory);
+        productDao = daoSession.getProductDao();
+        categoryListdb=productDao.loadAll();
 
 
 
@@ -102,6 +102,7 @@ this.context=context;
 
         //   moviesViewHolder. quantityText.setText("x "+ movies.getmQuantity());
 
+        categoryListdb =productDao.loadAll();
 
         calculateMealTotal();
 
