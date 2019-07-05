@@ -2,6 +2,7 @@ package com.zaigo.coordinatelayouttest;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -92,9 +93,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MovieCategoryAdapter.AdapterCallback {
 
     DrawerLayout drawer;
-    private MovieCategoryAdapter mAdapter;
+    public static MovieCategoryAdapter mAdapter;
     public static RecyclerView recyclerView;
-
+    public static Activity activity;
     List<MovieCategory> movieCategories = new ArrayList<>();
     List<Product> storeCategoryList;
 
@@ -106,9 +107,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     Timer timer;
     LinearLayoutManager linearVertical;
-    private List<String> mDataList = new ArrayList<>();
-    MagicIndicator magicIndicator;
-    FragmentContainerHelper mFramentContainerHelper;
+    public static List<String> mDataList = new ArrayList<>();
+    public static MagicIndicator magicIndicator;
+    public static FragmentContainerHelper mFramentContainerHelper;
 
     CoordinatorLayout testhide;
 
@@ -161,7 +162,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
             window.setStatusBarColor(Color.parseColor("#000000"));
         }
         setContentView(R.layout.activity_navigation_drawer);
-
+        activity=this;
         gps = new GPSTracker(NavigationDrawerActivity.this);
 
         if (ActivityCompat.checkSelfPermission(NavigationDrawerActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -542,10 +543,10 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
 
 
-    private void initMagicIndicator8() {
+    public static void initMagicIndicator8() {
 
         magicIndicator.setBackgroundColor(Color.BLACK);
-        CommonNavigator commonNavigator = new CommonNavigator(this);
+        CommonNavigator commonNavigator = new CommonNavigator(activity);
         commonNavigator.setScrollPivotX(0.35f);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override

@@ -48,8 +48,8 @@ public int count=-1;
 this.context=context;
         daoSession = ((App) context.getApplication()).getDaoSession();
         productDao = daoSession.getProductDao();
-        categoryListdb =productDao.loadAll();
         categorys=movieCategories;
+        categoryListdb =productDao.loadAll();
         filtercategoryListdb =movieCategories;
         try {
             adapterCallback = ((AdapterCallback) context);
@@ -75,15 +75,10 @@ this.context=context;
     @Override
     public void onBindParentViewHolder(MovieCategoryViewHolder movieCategoryViewHolder, int position, ParentListItem parentListItem) {
         MovieCategory movieCategory = (MovieCategory) parentListItem;
-        count=count+1;
-        Log.e("HEADER","HEADER"+count);
 
-        if(filtercategoryListdb.size()>count)
-        {
-            movieCategoryViewHolder.bind(filtercategoryListdb.get(count));
+            movieCategoryViewHolder.bind(movieCategory);
 
-        }
-        //count=count++;
+
 
     }
 
@@ -535,9 +530,18 @@ this.context=context;
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
+                      /*  if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
-                        }
+                        }*/
+
+
+                      for(Product product:row.getChildItemList())
+                      {
+                          if (product.getTitle().toLowerCase().contains(charString.toLowerCase())) {
+                              filteredList.add(row);
+                              break;
+                          }
+                      }
                     }
 
                     filtercategoryListdb = filteredList;
@@ -552,12 +556,23 @@ this.context=context;
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 filtercategoryListdb = (ArrayList<MovieCategory>) filterResults.values;
 
+                NavigationDrawerActivity.mDataList.clear();
+
+                for(int i=0;i<filtercategoryListdb.size();i++)
+                {
+                    NavigationDrawerActivity.mDataList.add(filtercategoryListdb.get(i).getName());
+                }
+
+
                 collapseAllParents();
                 //count=-1;
                 // refresh the list with filtered data
                 MovieCategoryAdapter   mAdapter = new MovieCategoryAdapter(context, filtercategoryListdb);
 
                 recyclerView.setAdapter(mAdapter);
+
+
+                NavigationDrawerActivity.initMagicIndicator8();
 
                 mAdapter.collapseAllParents();
 

@@ -18,7 +18,7 @@ public class MovieCategory implements ParentListItem {
     }
 
     @Override
-    public List<?> getChildItemList() {
+    public List<Product> getChildItemList() {
         return mMovies;
     }
 
