@@ -543,7 +543,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
 
 
-    public static void initMagicIndicator8() {
+    public static void initMagicIndicator8(MovieCategoryAdapter mAdapter) {
 
         magicIndicator.setBackgroundColor(Color.BLACK);
         CommonNavigator commonNavigator = new CommonNavigator(activity);
@@ -663,7 +663,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
                     }
 
                     childListDeatilsApiCalling(0);
-                    initMagicIndicator8();
+                    initMagicIndicator8(mAdapter);
                 }
 
 
