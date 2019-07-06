@@ -259,7 +259,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
                                 public void run() {
 
 
-                                    hideKeyboard(activity);
 
                                     mAdapter.getFilter().filter(s.toString());
                                 }

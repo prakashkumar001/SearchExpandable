@@ -35,6 +35,8 @@ public abstract class ExpandableRecyclerAdapter<PVH extends ParentViewHolder, CV
     private static final String EXPANDED_STATE_MAP = "ExpandableRecyclerAdapter.ExpandedStateMap";
     private static final int TYPE_PARENT = 0;
     private static final int TYPE_CHILD = 1;
+    int parentposition=-1;
+    int childposition=-1;
 
     /**
      * A {@link List} of all currently expanded {@link ParentListItem} objects
@@ -134,13 +136,15 @@ public abstract class ExpandableRecyclerAdapter<PVH extends ParentViewHolder, CV
                 parentViewHolder.setMainItemClickToExpand();
             }
 
+            parentposition=parentposition+1;
             ParentWrapper parentWrapper = (ParentWrapper) listItem;
             parentViewHolder.setExpanded(parentWrapper.isExpanded());
-            onBindParentViewHolder(parentViewHolder, position, parentWrapper.getParentListItem());
+            onBindParentViewHolder(parentViewHolder, parentposition, parentWrapper.getParentListItem());
         } else if (listItem == null) {
             throw new IllegalStateException("Incorrect ViewHolder found");
         } else {
-            onBindChildViewHolder((CVH) holder, position, listItem);
+            childposition=childposition+1;
+            onBindChildViewHolder((CVH) holder, childposition, listItem);
         }
     }
 

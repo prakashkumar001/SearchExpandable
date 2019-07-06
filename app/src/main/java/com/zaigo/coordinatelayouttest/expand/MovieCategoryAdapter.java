@@ -40,6 +40,7 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
     Product productDbModel;
 public int count=-1;
     private AdapterCallback adapterCallback;
+   public static MovieCategoryAdapter mAdapter;
   Activity context;
     public MovieCategoryAdapter(Activity context, List<MovieCategory> movieCategories) {
 
@@ -79,21 +80,48 @@ this.context=context;
         categoryListdb=productDao.loadAll();
 
 
-        movieCategoryViewHolder.mMovieTextView.setOnClickListener(new View.OnClickListener() {
+        Log.e("HEADER","HEADER"+position);
+        movieCategoryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(movieCategoryViewHolder.isExpanded())
                 {
-                    collapseAllParents();
+
+                    if(NavigationDrawerActivity.mAdapter!=null)
+                    {
+                        NavigationDrawerActivity.mAdapter.collapseAllParents();
+
+                    }
+
+
+
+                    if(mAdapter!=null) {
+
+                        mAdapter.collapseAllParents();
+
+
+                    }
+
+
 
                 }else
                 {
-                    expandParent(position);
+                    if(NavigationDrawerActivity.mAdapter!=null) {
+                        NavigationDrawerActivity.mAdapter.collapseAllParents();
+                        NavigationDrawerActivity.mAdapter.expandParent(position);
+                    }
 
+
+                   if(mAdapter!=null) {
+
+                       mAdapter.collapseAllParents();
+
+                       mAdapter.expandParent(position);
+
+                   }
                 }
-
-            }
+                         }
         });
 
 
@@ -583,10 +611,9 @@ this.context=context;
                 }
 
 
-                collapseAllParents();
                 //count=-1;
                 // refresh the list with filtered data
-                MovieCategoryAdapter   mAdapter = new MovieCategoryAdapter(context, filtercategoryListdb);
+                mAdapter = new MovieCategoryAdapter(context, filtercategoryListdb);
 
                 recyclerView.setAdapter(mAdapter);
 
@@ -596,6 +623,7 @@ this.context=context;
                 mAdapter.collapseAllParents();
 
                 mAdapter.expandParent(0);
+
 
             }
         };
