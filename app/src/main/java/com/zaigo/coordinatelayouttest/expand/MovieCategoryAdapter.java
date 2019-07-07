@@ -27,6 +27,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.zaigo.coordinatelayouttest.NavigationDrawerActivity.mFramentContainerHelper;
 import static com.zaigo.coordinatelayouttest.NavigationDrawerActivity.recyclerView;
 
 public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategoryViewHolder, MoviesViewHolder> implements Filterable {
@@ -109,6 +110,8 @@ this.context=context;
                 {
                     if(NavigationDrawerActivity.mAdapter!=null) {
                         NavigationDrawerActivity.mAdapter.collapseAllParents();
+                        mFramentContainerHelper.handlePageSelected(position);
+
                         NavigationDrawerActivity.mAdapter.expandParent(position);
                     }
 
@@ -116,8 +119,11 @@ this.context=context;
                    if(mAdapter!=null) {
 
                        mAdapter.collapseAllParents();
+                       mFramentContainerHelper.handlePageSelected(position);
 
                        mAdapter.expandParent(position);
+
+
 
                    }
                 }
