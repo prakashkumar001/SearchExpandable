@@ -239,6 +239,8 @@ this.context=context;
         moviesViewHolder.plus_meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                parentposition=-1;
+                childposition=-1;
 
                 if (productDao.queryBuilder()
                         .where(ProductDao.Properties.ID.eq(movies.getID()))
@@ -348,6 +350,8 @@ this.context=context;
               //  currentCost.setText("GH"+"\u20B5"+" "+ (currentFood.getmAmount() * currentFood.getmQuantity()));
                 notifyDataSetChanged();*/
 
+                parentposition=-1;
+                childposition=-1;
 
                 if (productDao.queryBuilder()
                         .where(ProductDao.Properties.ID.eq(movies.getID()))
@@ -441,6 +445,8 @@ this.context=context;
         moviesViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                parentposition=-1;
+                childposition=-1;
 
                 if (productDao.queryBuilder()
                         .where(ProductDao.Properties.ID.eq(movies.getID()))
@@ -550,7 +556,6 @@ this.context=context;
 
 
                 System.out.println("childddddddddddddd" + movies.getTitle());
-
                 notifyDataSetChanged();
 
             }
@@ -608,7 +613,8 @@ this.context=context;
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 filtercategoryListdb = (ArrayList<MovieCategory>) filterResults.values;
-
+                parentposition=-1;
+                childposition=-1;
                 NavigationDrawerActivity.mDataList.clear();
 
                 for(int i=0;i<filtercategoryListdb.size();i++)
