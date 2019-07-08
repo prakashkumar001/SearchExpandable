@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.zaigo.coordinatelayouttest.adapter.OrderAdapter;
 import com.zaigo.coordinatelayouttest.common.Utility;
+import com.zaigo.coordinatelayouttest.expand.ExpandableRecyclerAdapter;
 import com.zaigo.coordinatelayouttest.model.DaoSession;
 import com.zaigo.coordinatelayouttest.model.DataPassModel;
 import com.zaigo.coordinatelayouttest.model.Product;
@@ -165,6 +166,8 @@ public class CartItemActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
+            ExpandableRecyclerAdapter.parentposition=-1;
+            ExpandableRecyclerAdapter.childposition=-1;
             Intent i = new Intent(CartItemActivity.this,NavigationDrawerActivity.class);
             startActivity(i);
             finish();
@@ -176,6 +179,8 @@ public class CartItemActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        ExpandableRecyclerAdapter.parentposition=-1;
+        ExpandableRecyclerAdapter.childposition=-1;
         Intent i = new Intent(CartItemActivity.this,NavigationDrawerActivity.class);
         startActivity(i);
         finish();
