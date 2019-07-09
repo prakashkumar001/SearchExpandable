@@ -12,6 +12,8 @@ public class MovieCategory implements ParentListItem {
         mName = name;
         mMovies = movies;
     }
+    public MovieCategory( ) {
+    }
 
     public String getName() {
         return mName;

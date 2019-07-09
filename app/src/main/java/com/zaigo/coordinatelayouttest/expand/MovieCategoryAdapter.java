@@ -1,16 +1,12 @@
 package com.zaigo.coordinatelayouttest.expand;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.squareup.picasso.Picasso;
 import com.zaigo.coordinatelayouttest.App;
@@ -19,10 +15,6 @@ import com.zaigo.coordinatelayouttest.R;
 import com.zaigo.coordinatelayouttest.model.DaoSession;
 import com.zaigo.coordinatelayouttest.model.Product;
 import com.zaigo.coordinatelayouttest.model.ProductDao;
-import com.zaigo.coordinatelayouttest.model.ProductDbModel;
-
-import org.greenrobot.greendao.query.DeleteQuery;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,18 +31,19 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
     ProductDao productDao;
     DaoSession daoSession;
     Product productDbModel;
-public int count=-1;
+    public int count = -1;
     private AdapterCallback adapterCallback;
-   public static MovieCategoryAdapter mAdapter;
-  Activity context;
+    public static MovieCategoryAdapter mAdapter;
+    Activity context;
+
     public MovieCategoryAdapter(Activity context, List<MovieCategory> movieCategories) {
 
         super(movieCategories);
         mInflator = LayoutInflater.from(context);
-this.context=context;
+        this.context = context;
         daoSession = ((App) context.getApplication()).getDaoSession();
-        categorys=movieCategories;
-        filtercategoryListdb =movieCategories;
+        categorys = movieCategories;
+        filtercategoryListdb = movieCategories;
         try {
             adapterCallback = ((AdapterCallback) context);
         } catch (ClassCastException e) {
@@ -76,28 +69,25 @@ this.context=context;
     public void onBindParentViewHolder(MovieCategoryViewHolder movieCategoryViewHolder, int position, ParentListItem parentListItem) {
         MovieCategory movieCategory = (MovieCategory) parentListItem;
 
-            movieCategoryViewHolder.bind(movieCategory);
+        movieCategoryViewHolder.bind(movieCategory);
         productDao = daoSession.getProductDao();
-        categoryListdb=productDao.loadAll();
+        categoryListdb = productDao.loadAll();
 
 
-        Log.e("HEADER","HEADER"+position);
+        Log.e("HEADER", "HEADER" + position);
         movieCategoryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(movieCategoryViewHolder.isExpanded())
-                {
+                if (movieCategoryViewHolder.isExpanded()) {
 
-                    if(NavigationDrawerActivity.mAdapter!=null)
-                    {
+                    if (NavigationDrawerActivity.mAdapter != null) {
                         NavigationDrawerActivity.mAdapter.collapseAllParents();
 
                     }
 
 
-
-                    if(mAdapter!=null) {
+                    if (mAdapter != null) {
 
                         mAdapter.collapseAllParents();
 
@@ -105,10 +95,8 @@ this.context=context;
                     }
 
 
-
-                }else
-                {
-                    if(NavigationDrawerActivity.mAdapter!=null) {
+                } else {
+                    if (NavigationDrawerActivity.mAdapter != null) {
                         NavigationDrawerActivity.mAdapter.collapseAllParents();
                         mFramentContainerHelper.handlePageSelected(position);
 
@@ -116,20 +104,18 @@ this.context=context;
                     }
 
 
-                   if(mAdapter!=null) {
+                    if (mAdapter != null) {
 
-                       mAdapter.collapseAllParents();
-                       mFramentContainerHelper.handlePageSelected(position);
+                        mAdapter.collapseAllParents();
+                        mFramentContainerHelper.handlePageSelected(position);
 
-                       mAdapter.expandParent(position);
+                        mAdapter.expandParent(position);
 
 
-
-                   }
+                    }
                 }
-                         }
+            }
         });
-
 
 
     }
@@ -154,7 +140,7 @@ this.context=context;
 
         //   moviesViewHolder. quantityText.setText("x "+ movies.getmQuantity());
 
-        categoryListdb =productDao.loadAll();
+        categoryListdb = productDao.loadAll();
 
         calculateMealTotal();
 
@@ -239,8 +225,8 @@ this.context=context;
         moviesViewHolder.plus_meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                parentposition=-1;
-                childposition=-1;
+                parentposition = -1;
+                childposition = -1;
 
                 if (productDao.queryBuilder()
                         .where(ProductDao.Properties.ID.eq(movies.getID()))
@@ -350,8 +336,8 @@ this.context=context;
               //  currentCost.setText("GH"+"\u20B5"+" "+ (currentFood.getmAmount() * currentFood.getmQuantity()));
                 notifyDataSetChanged();*/
 
-                parentposition=-1;
-                childposition=-1;
+                parentposition = -1;
+                childposition = -1;
 
                 if (productDao.queryBuilder()
                         .where(ProductDao.Properties.ID.eq(movies.getID()))
@@ -445,8 +431,8 @@ this.context=context;
         moviesViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentposition=-1;
-                childposition=-1;
+                parentposition = -1;
+                childposition = -1;
 
                 if (productDao.queryBuilder()
                         .where(ProductDao.Properties.ID.eq(movies.getID()))
@@ -593,14 +579,21 @@ this.context=context;
                         }*/
 
 
-                      for(Product product:row.getChildItemList())
-                      {
-                          if (product.getTitle().toLowerCase().contains(charString.toLowerCase())) {
-                              filteredList.add(row);
-                              break;
-                          }
-                      }
-                    }
+                        List<Product> products = new ArrayList<>();
+                        for (Product product : row.getChildItemList()) {
+                            if (product.getTitle().toLowerCase().contains(charString.toLowerCase())) {
+                                products.add(product);
+
+                            }
+                        }
+
+                        if(products.size()>0)
+                        {
+                            MovieCategory  movieCategory = new MovieCategory(row.getName(), products);
+                            filteredList.add(movieCategory);
+
+                        }
+                             }
 
                     filtercategoryListdb = filteredList;
                 }
@@ -613,12 +606,11 @@ this.context=context;
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 filtercategoryListdb = (ArrayList<MovieCategory>) filterResults.values;
-                parentposition=-1;
-                childposition=-1;
+                parentposition = -1;
+                childposition = -1;
                 NavigationDrawerActivity.mDataList.clear();
 
-                for(int i=0;i<filtercategoryListdb.size();i++)
-                {
+                for (int i = 0; i < filtercategoryListdb.size(); i++) {
                     NavigationDrawerActivity.mDataList.add(filtercategoryListdb.get(i).getName());
                 }
 
@@ -677,8 +669,6 @@ this.context=context;
 
     }
 */
-
-
 
 
 }
